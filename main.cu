@@ -1,5 +1,5 @@
 #include <cstdio>
-#include "cudaFxns.cuh"
+#include "matFxns.cuh"
 
 __global__ void helloCUDA() {
     printf("Hello from CUDA!\n");
@@ -15,18 +15,24 @@ int main() {
 
     CudaMatrix B(num_dim, dimensions);
 
-    CudaMatrix C(num_dim, dimensions);
     cudaDeviceSynchronize();
     A.printMatrix();
     printf("------------------\n");
     B.printMatrix();
     printf("------------------\n");
-//    C.printMatrix();
-//    printf("------------------\n");
-    matMul(A, B, C);
-    cudaDeviceSynchronize();
-    // Print the dimensions
-    C.printMatrix();
+//    for (int i = 0; i < 5; ++i){
+//        for (int j = 0; j < 5; ++j){
+//            int loc[] = {i, j};
+//            printf("%d ", A.getElement(loc));
+//        }
+//        printf("\n");
+//    }
+
+
+    CudaMatrix * C = matMul(A, B);
+//     Print the dimensions
+    if (C) C->printMatrix();
+    delete C;
 
     return 0;
 }

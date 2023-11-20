@@ -22,9 +22,7 @@ public:
         // MallocNewMatrix
         initDimensions(dim_in);
         cudaMalloc(&array, size * sizeof(int));
-        for (int i = 0; i < size; ++i){
-            array[i] = arr_in[i];
-        }
+        cudaMemcpy(array, arr_in, size * sizeof(int), cudaMemcpyHostToDevice);
     }
 
 
@@ -53,7 +51,7 @@ public:
         return res;
     }
 
-    __device__ int& getElement(const int* location){
+    __device__ int& getElement(const int location[]){
         int start = 0;
         for (int i = 0; i < num_dim - 1; ++i){
             start += elementsPerDim(i) * location[i];
