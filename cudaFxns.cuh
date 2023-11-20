@@ -26,12 +26,4 @@ void matMul(CudaMatrix &A, CudaMatrix&B, CudaMatrix &C) {
     }
 }
 
-__global__ void cuRandArr(int *randArray) {
-    int tid = threadIdx.x;
-    curandState state;
-    curand_init(clock64(), tid, 0, &state);
-    int r = (int)(curand_uniform(&state) * 20);
-    randArray[tid] = (r);
-}
-
 
