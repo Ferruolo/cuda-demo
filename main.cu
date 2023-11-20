@@ -1,5 +1,5 @@
 #include <cstdio>
-#include "cudaMatrix.cuh"
+#include "cudaFxns.cuh"
 
 __global__ void helloCUDA() {
     printf("Hello from CUDA!\n");
@@ -8,12 +8,27 @@ __global__ void helloCUDA() {
 
 int main() {
     // Example usage of CudaMatrix
+    int num_dim = 2;
+    int dimensions[] = {5, 5};
 
-    CudaMatrix cudaMatrix(3, dims, data);
+    CudaMatrix A(num_dim, dimensions);
 
+    CudaMatrix B(num_dim, dimensions);
+
+    CudaMatrix C(num_dim, dimensions);
+    cudaDeviceSynchronize();
+    A.printMatrix();
+    printf("------------------\n");
+    B.printMatrix();
+    printf("------------------\n");
+//    C.printMatrix();
+//    printf("------------------\n");
+    matMul(A, B, C);
     cudaDeviceSynchronize();
     // Print the dimensions
-    cudaMatrix.getDimensions();
+    C.printMatrix();
 
     return 0;
 }
+
+
