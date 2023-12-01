@@ -12,6 +12,7 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -Wall")
 add_executable(cuda_LP main.cu
         cudaMatrix.cuh
         matFxns.cuh
+        cudaMatrix.cu
 )
 
 set_target_properties(cuda_LP PROPERTIES
