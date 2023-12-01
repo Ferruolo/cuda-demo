@@ -13,6 +13,7 @@ add_executable(cuda_LP main.cu
         cudaMatrix.cuh
         matFxns.cuh
         cudaMatrix.cu
+        matFxns.cu
 )
 
 set_target_properties(cuda_LP PROPERTIES
