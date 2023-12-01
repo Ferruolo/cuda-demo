@@ -7,7 +7,7 @@ set(CMAKE_CUDA_STANDARD 17)
 set(CMAKE_CUDA_ARCHITECTURES 75)
 
 # Add additional flags if needed
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -Wall")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -Wall -g -G")
 
 add_executable(cuda_LP main.cu
         cudaMatrix.cuh

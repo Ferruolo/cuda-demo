@@ -40,8 +40,6 @@ CudaMatrix *createGenMatrix(const int *dims, int numDimensions) {// TODO: add cu
     cudaMallocManaged(&(mat->shape), numDimensions * sizeof(int));
     cudaMemcpy((mat->shape), dims, numDimensions * sizeof(int), cudaMemcpyHostToDevice);
 
-
-
     return mat;
 }
 
@@ -56,7 +54,7 @@ CudaMatrix* BuildRandomMatrix (int dims[], int numDimensions){
 }
 
 
-CudaMatrix* BuildMatrixConst (int dims[], int numDimensions, const int &c){
+CudaMatrix* BuildMatrixConst (const int dims[], int numDimensions, const int &c){
     CudaMatrix *mat = createGenMatrix(dims, numDimensions);
 
     // Initialize matrix
@@ -65,11 +63,12 @@ CudaMatrix* BuildMatrixConst (int dims[], int numDimensions, const int &c){
     return mat;
 }
 
-CudaMatrix* BuildMatrixZeros (int dims[], int numDimensions){
+CudaMatrix* BuildMatrixZeros (const int dims[], int numDimensions){
     return BuildMatrixConst(dims, numDimensions, 0);
 }
 
 void printMatrix(const CudaMatrix *m) {
+    if (!m) return;
     //Currently only supports 2-D matrix operations
     int *local = (int *)malloc(m->size * sizeof(int));
     cudaMemcpy(local, m->mat, m->size * sizeof(int), cudaMemcpyDeviceToHost);

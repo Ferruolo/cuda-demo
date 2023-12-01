@@ -15,11 +15,11 @@ struct CudaMatrix {
     int size = 1;
     int numDim = 0;
     int *elementsPerDim = nullptr;
-    ~CudaMatrix(){
-        cudaFree(&mat);
-        cudaFree(&shape);
-        cudaFree(&elementsPerDim);
-    }
+//    ~CudaMatrix(){
+//        cudaFree(&mat);
+//        cudaFree(&shape);
+//        cudaFree(&elementsPerDim);
+//    }
 };
 
 
@@ -29,9 +29,9 @@ CudaMatrix *createGenMatrix(const int *dims, int numDimensions);
 CudaMatrix* BuildRandomMatrix (int dims[], int numDimensions);
 
 
-CudaMatrix* BuildMatrixConst (int dims[], int numDimensions, const int &c);
+CudaMatrix* BuildMatrixConst (const int dims[], int numDimensions, const int &c);
 
-CudaMatrix* BuildMatrixZeros (int dims[], int numDimensions);
+CudaMatrix* BuildMatrixZeros (const int dims[], int numDimensions);
 
 void printMatrix(const CudaMatrix *mat);
 

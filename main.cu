@@ -12,6 +12,7 @@ int main() {
     int d2[] = {5, 5};
     auto *A = BuildRandomMatrix(d1, num_dim);
     auto *B = BuildRandomMatrix(d2, num_dim);
+    auto *ones = BuildMatrixConst(d1, num_dim, 1);
 
     printMatrix(A);
     printMatrix(B);
@@ -19,9 +20,9 @@ int main() {
     printMatrix(C);
 
 
-    delete A;
-    delete B;
-    delete C;
 
+    auto *D = matAdd(A, ones);
+    printf("Arrived\n");
+    printMatrix(D);
     return 0;
 }
